@@ -1,6 +1,6 @@
 ### Run ollama localy using open-webui with podman.
 
-Run ollama using open-webui locally, no  GPU is needed. In case there is a GPU add nvidia driver in the docker-compose. 
+Run ollama using open-webui locally, no  GPU is needed. In case there is a GPU an nvidia driver can be configured in the docker-compose in ollama. 
 
 #### Why run LLMs locally?
 
