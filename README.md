@@ -12,12 +12,30 @@ Run ollama using open-webui locally, no  GPU is needed. In case there is a GPU a
 1. Create network
 
 ```
-podman network create <network_name> ### as defined in podman-compose.yml
+docker network create <network_name>
 ```
 
 2. Start containers:
 
 ```
-podman-compose up -d
+docker-compose up
 ```
 
+3. WebUi
+
+```
+http://localhost:3002
+```
+
+4. Enable GPU
+To enable GPU the following can be added
+
+```
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+```
