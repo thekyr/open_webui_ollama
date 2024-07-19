@@ -10,7 +10,7 @@ Run ollama using open-webui locally, no  GPU is needed. In case there is a GPU a
 
 ### Usage
 1. Create network
-
+  - update your the docker-compose with the defined 'network_name'
 ```
 docker network create <network_name>
 ```
@@ -21,7 +21,7 @@ docker network create <network_name>
 docker-compose up
 ```
 
-3. WebUi
+3. Access the webui and create a local user. Download the latest ollama model.
 
 ```
 http://localhost:3002
