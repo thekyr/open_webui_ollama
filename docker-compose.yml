@@ -2,26 +2,27 @@ version: '3.8'
 
 services:
   ollama:
-    image: docker.io/ollama/ollama
+    image: docker.io/ollama/ollama:latest
     container_name: ollama
     networks:
       - matrixpod
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [ gpu ]
-    restart: always
+#    deploy:
+#      resources:
+#        reservations:
+#          devices:
+#            - driver: nvidia
+#              count: 1
+#              capabilities: [ gpu ]
+    restart: unless-stopped
     ports:
-      - "127.0.0.1:11434:11434"
+      - "11434:11434"
     volumes:
-      - ./data/open-webui:/root/.ollama
+      - ./data/ollama:/root/.ollama
+    privileged: true
 
 
   open-webui:
-    image: ghcr.io/open-webui/open-webui:main
+    image: ghcr.io/open-webui/open-webui:latest
     container_name: open-webui
     restart: always
     ports:
@@ -36,6 +37,7 @@ services:
           - ollama.local
     depends_on:
       - ollama
+    restart: unless-stopped
 
 networks:
   matrixpod:
